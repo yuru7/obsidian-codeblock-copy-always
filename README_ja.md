@@ -26,17 +26,7 @@
 
 ### コミュニティプラグインから
 
-1. **設定 → コミュニティプラグイン** を開きます。
-2. **制限モード** がオンならオフにします。
-3. **閲覧** を選び、**Code Block Copy Always** を検索します。
-4. プラグインをインストールし、有効にします。
-
-### 手動インストール
-
-1. Vault 内に `.obsidian/plugins/code-block-copy-always/` フォルダを作成します。
-2. `main.js`、`manifest.json`、`styles.css` をそのフォルダへコピーします。
-3. Obsidian を再読み込みします。
-4. **設定 → コミュニティプラグイン** を開き、**Code Block Copy Always** を有効にします。
+コミュニティプラグインから **Code Block Copy Always** を検索してインストールしてください。
 
 ## 動作条件
 

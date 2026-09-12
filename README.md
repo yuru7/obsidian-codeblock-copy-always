@@ -16,9 +16,11 @@ This plugin fills that gap. While you are editing a fenced code block, a copy ic
 2. Place the cursor inside a fenced code block (` ``` ` or `~~~`).
 3. Click the copy icon in the top-right of the block.
 
-The plugin copies the code itself, not the fence lines.
+The plugin copies the code itself, not the fence lines. When the copy succeeds, the icon briefly changes to a checkmark.
 
 When the cursor leaves the block, or the editor loses focus, the plugin hides its button so Obsidian’s built-in copy control can show again.
+
+There are no settings. Enable the plugin and it is ready to use.
 
 ## Installation
 
