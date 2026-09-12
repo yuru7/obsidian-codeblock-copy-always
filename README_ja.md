@@ -1,4 +1,4 @@
-# Code Block Copy Always
+# Codeblock Copy Always
 
 [English](README.md) | [日本語](README_ja.md)
 
