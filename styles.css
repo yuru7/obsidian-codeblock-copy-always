@@ -2,6 +2,7 @@
     --icon-size: var(--code-size);
     --icon-stroke: var(--icon-s-stroke-width);
     position: absolute;
+    left: auto;
     z-index: 1;
     display: inline-flex;
     align-items: center;

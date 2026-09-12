@@ -13,33 +13,34 @@ interface ButtonLayout {
     visible: boolean;
 }
 
+function asHtmlElement(node: Node | null): HTMLElement | null {
+    return node?.instanceOf(HTMLElement) ? node : null;
+}
+
 // Isolated so Obsidian class name changes stay in one helper.
 function findCodeBlockElement(
     view: EditorView,
     from: number,
 ): HTMLElement | null {
     const start = view.domAtPos(from);
-    let element: Node | null = start.node;
-    if (!(element instanceof HTMLElement)) {
-        element = element.parentElement;
-    }
+    let element = asHtmlElement(start.node) ?? asHtmlElement(start.node.parentElement);
 
-    while (element instanceof HTMLElement && element !== view.contentDOM) {
+    while (element && element !== view.contentDOM) {
         if (
             element.classList.contains('HyperMD-codeblock-begin') ||
             element.classList.contains('HyperMD-codeblock')
         ) {
             return element;
         }
-        element = element.parentElement;
+        element = asHtmlElement(element.parentElement);
     }
 
-    element = start.node instanceof HTMLElement ? start.node : start.node.parentElement;
-    while (element instanceof HTMLElement && element !== view.contentDOM) {
+    element = asHtmlElement(start.node) ?? asHtmlElement(start.node.parentElement);
+    while (element && element !== view.contentDOM) {
         if (element.classList.contains('cm-line')) {
             return element;
         }
-        element = element.parentElement;
+        element = asHtmlElement(element.parentElement);
     }
 
     return null;
@@ -80,14 +81,14 @@ function isNativeCopyFlairVisible(
     };
 
     for (let i = 0; i < flairs.length; i++) {
-        const flair = flairs.item(i);
-        if (!(flair instanceof HTMLElement) || !isVisibleCopyFlair(flair)) {
+        const htmlFlair = asHtmlElement(flairs.item(i));
+        if (!htmlFlair || !isVisibleCopyFlair(htmlFlair)) {
             continue;
         }
-        if (blockEl?.contains(flair)) {
+        if (blockEl?.contains(htmlFlair)) {
             return true;
         }
-        const rect = flair.getBoundingClientRect();
+        const rect = htmlFlair.getBoundingClientRect();
         const overlapsCorner =
             rect.left < corner.right &&
             rect.right > corner.left &&
@@ -116,17 +117,19 @@ class CodeBlockCopyButtonPlugin {
     private copiedTimer: number | null = null;
 
     constructor(private readonly view: EditorView) {
-        this.button = document.createElement('span');
-        this.button.classList.add(BUTTON_CLASS, HIDDEN_CLASS);
-        this.button.setAttribute('role', 'button');
-        this.button.setAttribute('aria-label', 'Copy');
+        this.button = this.view.dom.createSpan({
+            cls: [BUTTON_CLASS, HIDDEN_CLASS],
+            attr: {
+                role: 'button',
+                'aria-label': 'Copy',
+            },
+        });
         setIcon(this.button, 'copy');
 
         this.button.addEventListener('pointerdown', this.preserveFocus, true);
         this.button.addEventListener('mousedown', this.preserveFocus, true);
         this.button.addEventListener('click', this.onClick);
 
-        this.view.dom.appendChild(this.button);
         setTooltip(this.button, 'Copy');
         this.view.contentDOM.addEventListener('focus', this.onFocusChange);
         this.view.contentDOM.addEventListener('blur', this.onFocusChange);
@@ -294,9 +297,10 @@ class CodeBlockCopyButtonPlugin {
         }
 
         this.button.classList.remove(HIDDEN_CLASS);
-        this.button.style.top = `${layout.top}px`;
-        this.button.style.right = `${layout.right}px`;
-        this.button.style.left = 'auto';
+        this.button.setCssStyles({
+            top: `${layout.top}px`,
+            right: `${layout.right}px`,
+        });
     }
 }
 
