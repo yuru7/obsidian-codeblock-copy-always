@@ -1,6 +1,6 @@
 {
     "name": "obsidian-code-block-copy-always",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Show a copy button while editing fenced code blocks in Obsidian Live Preview.",
     "main": "main.js",
     "type": "module",
