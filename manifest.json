@@ -1,9 +1,9 @@
 {
-    "id": "code-block-copy-always",
+    "id": "codeblock-copy-always",
     "name": "Code Block Copy Always",
     "version": "0.1.1",
     "minAppVersion": "1.8.0",
-    "description": "Show a copy button while editing fenced code blocks in Live Preview.",
+    "description": "Show a copy button while editing fenced codeblocks in Live Preview.",
     "author": "yuru7",
     "isDesktopOnly": true
 }
