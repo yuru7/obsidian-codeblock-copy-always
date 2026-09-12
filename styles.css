@@ -1,0 +1,36 @@
+.markdown-source-view.mod-cm6 .code-block-copy-always-button {
+    --icon-size: var(--code-size);
+    --icon-stroke: var(--icon-s-stroke-width);
+    position: absolute;
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: var(--code-radius);
+    background: none;
+    background-color: transparent;
+    box-shadow: none;
+    color: var(--text-muted);
+    cursor: var(--cursor);
+    line-height: 1;
+}
+
+.markdown-source-view.mod-cm6 .code-block-copy-always-button.is-hidden {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.markdown-source-view.mod-cm6 .code-block-copy-always-button svg.svg-icon {
+    width: var(--code-size);
+    height: var(--code-size);
+    max-height: var(--code-size);
+}
+
+@media (hover: hover) {
+    .markdown-source-view.mod-cm6 .code-block-copy-always-button:hover {
+        background-color: var(--background-modifier-hover);
+    }
+}

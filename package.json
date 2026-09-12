@@ -1,0 +1,39 @@
+{
+    "name": "obsidian-code-block-copy-always",
+    "version": "0.1.0",
+    "description": "Show a copy button while editing fenced code blocks in Obsidian Live Preview.",
+    "main": "main.js",
+    "type": "module",
+    "scripts": {
+        "dev": "node esbuild.config.mjs",
+        "build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
+        "test": "vitest run",
+        "version": "node version-bump.mjs && git add manifest.json versions.json"
+    },
+    "keywords": [
+        "obsidian",
+        "obsidian-plugin"
+    ],
+    "author": "",
+    "license": "MIT",
+    "devEngines": {
+        "packageManager": {
+            "name": "pnpm",
+            "version": "12.4.1",
+            "onFail": "download"
+        }
+    },
+    "packageManager": "pnpm@12.4.1",
+    "devDependencies": {
+        "@codemirror/lang-markdown": "^6.3.3",
+        "@codemirror/language": "^6.11.2",
+        "@codemirror/state": "^6.5.2",
+        "@codemirror/view": "^6.38.1",
+        "@lezer/common": "^1.2.3",
+        "@types/node": "^22.15.17",
+        "esbuild": "0.25.5",
+        "obsidian": "latest",
+        "typescript": "^5.8.3",
+        "vitest": "^3.2.4"
+    }
+}
